@@ -3,51 +3,40 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, BookOpen, Trophy, Flame, Star } from "lucide-react";
+import { Upload, BookOpen, Trophy, Flame, Star, LucideSwatchBook } from "lucide-react";
 import Link from "next/link";
 
 const days = ["S", "S", "R", "K", "J", "S", "M"];
-const activeStreak = [0, 1, 2]; // index hari yang sudah aktif (contoh: 3 hari pertama)
+const activeStreak = [0, 1, 2, 3]; // index hari yang sudah aktif (contoh: 3 hari pertama)
 
 const tabs = ["Pilihan Ganda", "Benar / Salah", "Isian Singkat"];
 
 const subjects = [
-  { id: "1", emoji: "💻", label: "Algoritma & Pemrograman" },
-  { id: "2", emoji: "🗄️", label: "Basis Data" },
-  { id: "3", emoji: "🌐", label: "Jaringan Komputer" },
-  { id: "4", emoji: "🧮", label: "Matematika Diskrit" },
-  { id: "5", emoji: "🔐", label: "Keamanan Sistem" },
-  { id: "6", emoji: "📱", label: "Pemrograman Mobile" },
-];
-
-const stats = [
   {
-    label: "Total Kuis",
-    value: "24",
-    icon: BookOpen,
-    bg: "bg-blue-100",
-    color: "text-blue-500",
+    id: "1",
+    emoji: <LucideSwatchBook size={50} className="text-blue-500" />,
+    label: "Algoritma & Pemrograman",
+  },
+  { id: "2", emoji: <LucideSwatchBook size={50} className="text-green-500" />, label: "Basis Data" },
+  {
+    id: "3",
+    emoji: <LucideSwatchBook size={50} className="text-purple-500" />,
+    label: "Jaringan Komputer",
   },
   {
-    label: "Poin",
-    value: "1.840",
-    icon: Star,
-    bg: "bg-amber-100",
-    color: "text-amber-500",
+    id: "4",
+    emoji: <LucideSwatchBook size={50} className="text-orange-500" />,
+    label: "Matematika Diskrit",
   },
   {
-    label: "Streak",
-    value: "3 Hari",
-    icon: Flame,
-    bg: "bg-rose-100",
-    color: "text-rose-500",
+    id: "5",
+    emoji: <LucideSwatchBook size={50} className="text-red-500" />,
+    label: "Keamanan Sistem",
   },
   {
-    label: "Peringkat",
-    value: "#3",
-    icon: Trophy,
-    bg: "bg-emerald-100",
-    color: "text-emerald-500",
+    id: "6",
+    emoji: <LucideSwatchBook size={50} className="text-indigo-500" />,
+    label: "Pemrograman Mobile",
   },
 ];
 
@@ -58,29 +47,28 @@ export default function Home() {
         <AppSidebar />
         <SidebarInset>
           <div className="flex flex-col gap-6 p-6 max-w-4xl mx-auto w-full">
-            {/* Greeting */}
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex flex-col sm:flex-row items-end justify-between">
+              <div className="text-left w-full mb-4 md:mb-0 lg:mb-0">
                 <h1 className="text-2xl font-extrabold">
-                  👋 Hai, <span className="text-primary">Fahri!</span>
+                  Selamat datang <span className="text-primary">Fahri!</span>
                 </h1>
                 <p className="text-muted-foreground text-sm mt-1">
                   Mau latihan soal apa hari ini?
                 </p>
               </div>
-              <Button className="gap-2 rounded-full font-bold text-sm">
+              <Button className="gap-2 rounded-lg font-bold text-sm p-3">
                 <Upload size={15} /> Upload PDF
               </Button>
             </div>
             {/* Streak Bar */}
-            <div className="rounded-2xl bg-primary p-5 text-white">
-              <div className="flex items-center gap-2 mb-4">
-                <Flame size={20} className="text-amber-300" />
-                <span className="font-bold text-lg">Day Streak</span>
+            <div className="rounded-2xl bg-linear-to-b from-sky-400 to-blue-500 p-7 text-white">
+              <div className="flex items-center justify-center gap-1 mb-7 lg:pr-7">
+                <Flame size={50} className="text-amber-300 fill-orange-500" />
+                <span className="font-bold text-xl">Day Streak</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-evenly">
                 {days.map((day, i) => (
-                  <div key={i} className="flex flex-col items-center gap-2">
+                  <div key={i} className="flex flex-col items-center gap-3">
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center text-lg
                         ${
@@ -89,9 +77,13 @@ export default function Home() {
                             : "bg-white/20 text-white/50"
                         }`}
                     >
-                      {activeStreak.includes(i) ? "🔥" : "💀"}
+                      {activeStreak.includes(i) ? (
+                        <Flame size={20} />
+                      ) : (
+                        <Flame size={20} />
+                      )}
                     </div>
-                    <span className="text-xs font-semibold">{day}</span>
+                    <span className="font-bold">{day}</span>
                   </div>
                 ))}
               </div>

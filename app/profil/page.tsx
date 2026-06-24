@@ -3,7 +3,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Star, Flame, Trophy, LogOut } from "lucide-react";
+import { BookOpen, Star, Flame, Trophy, User2Icon } from "lucide-react";
 
 const user = {
   name: "Muh. Fahri Fairuz Ramadhan",
@@ -27,6 +27,7 @@ const stats = [
     icon: Star,
     bg: "bg-amber-100",
     color: "text-amber-500",
+    fill: "fill-amber-500",
   },
   {
     label: "Streak",
@@ -34,6 +35,7 @@ const stats = [
     icon: Flame,
     bg: "bg-rose-100",
     color: "text-rose-500",
+    fill: "fill-rose-500",
   },
   {
     label: "Peringkat",
@@ -41,6 +43,7 @@ const stats = [
     icon: Trophy,
     bg: "bg-emerald-100",
     color: "text-emerald-500",
+
   },
 ];
 
@@ -55,17 +58,15 @@ export default function ProfilPage() {
         <AppSidebar />
         <SidebarInset>
           <div className="flex flex-col gap-6 p-8 max-w-2xl mx-auto w-full md:max-w-none md:px-10">
-            <div>
-              <h1 className="text-2xl font-extrabold">👤 Profil</h1>
-              <p className="text-muted-foreground text-sm mt-1">
-                Informasi akun dan statistik belajar kamu
-              </p>
+            <div className="flex items-center gap-4">
+              <User2Icon className="size-8!" />
+              <h1 className="text-2xl font-extrabold">Profil</h1>
             </div>
 
-            <Card className="rounded-2xl shadow-sm">
+            <Card className="rounded-2xl shadow-sm lg:px-7 md:px-7">
               <CardContent className="pt-6 pb-6">
                 <div className="flex items-center gap-5">
-                  <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white text-3xl font-extrabold shrink-0">
+                  <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center ring-2 ring-gray-300 ring-offset-2 text-3xl font-extrabold shrink-0">
                     {user.name.charAt(0)}
                   </div>
                   <div className="flex flex-col gap-1 min-w-0">
@@ -93,7 +94,7 @@ export default function ProfilPage() {
                     <div
                       className={`w-9 h-9 rounded-xl flex items-center justify-center mb-2 ${s.bg}`}
                     >
-                      <s.icon size={18} className={s.color} />
+                      <s.icon size={18} className={`${s.color} ${s.fill}`} />
                     </div>
                     <p className="text-xl font-bold">{s.value}</p>
                     <p className="text-xs text-muted-foreground">{s.label}</p>
@@ -126,7 +127,7 @@ export default function ProfilPage() {
               </CardContent>
             </Card>
 
-            {/* Logout */}
+            {/* Logout Component */}
             <LogoutButton />
           </div>
         </SidebarInset>

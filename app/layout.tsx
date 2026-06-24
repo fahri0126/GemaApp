@@ -26,16 +26,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${nunito.variable} font-sans antialiased`}>
         <TooltipProvider>
           <SidebarProvider>
-            <div className="flex min-h-screen">
-              
-              {/* Sidebar: Tetap di kiri, tidak boleh mengecil (shrink-0) */}
-              <aside className="hidden md:flex w-64 shrink-0 border-r bg-sidebar">
-                <AppSidebar />
-              </aside>
+            <div className="flex min-h-screen w-full">
 
-              {/* Main Content: Mengambil sisa ruang (flex-1) */}
               <main className="flex-1 w-full overflow-hidden pb-20 md:pb-0">
-                <div className="mx-auto w-full max-w-[1200px] px-4 md:px-8 py-6">
+                <div className="mx-auto w-full max-w-300 px-4 md:px-8 py-6">
                   {children}
                 </div>
               </main>

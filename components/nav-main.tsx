@@ -24,23 +24,23 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupContent>
-        <SidebarMenu className="gap-y-5">
+        <SidebarMenu className="gap-y-4">
           {items.map((item) => {
             const isActive =
               item.url === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.url);
-
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
                   asChild
                   isActive={isActive}
                   tooltip={item.title}
+                  className="pl-5 py-5"
                 >
                   <Link href={item.url}>
                     <div className="[&_svg]:size-6">{item.icon}</div>
-                    <span className="text-[15px]">{item.title}</span>
+                    <span className="text-[15px] font-medium">{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

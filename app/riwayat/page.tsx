@@ -3,7 +3,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, Clock } from "lucide-react";
+import { CheckCircle2, XCircle, Clock,HistoryIcon } from "lucide-react";
 
 const riwayatData = [
   {
@@ -78,25 +78,25 @@ export default function RiwayatPage() {
         <SidebarInset>
           <div className="flex flex-col gap-6 p-8 max-w-2xl mx-auto w-full md:max-w-none md:px-10">
             {/* Header */}
-            <div>
-              <h1 className="text-2xl font-extrabold">📋 Riwayat Kuis</h1>
-              <p className="text-muted-foreground text-sm mt-1">
-                Semua kuis yang pernah kamu kerjakan
-              </p>
+            <div className="flex items-center gap-4">
+              <HistoryIcon className="size-8!" />
+              <h1 className="text-2xl font-extrabold">Riwayat</h1>
             </div>
 
             {/* Ringkasan */}
             <div className="grid grid-cols-3 gap-3">
               <Card className="rounded-2xl shadow-sm">
-                <CardContent className="pt-4 pb-4">
+                <CardContent className="py-4 flex flex-col items-center justify-center">
                   <p className="text-2xl font-extrabold">
                     {riwayatData.length}
                   </p>
-                  <p className="text-xs text-muted-foreground">Total Kuis</p>
+                  <p className="text-xs text-muted-foreground">
+                    Total Kuis
+                  </p>
                 </CardContent>
               </Card>
               <Card className="rounded-2xl shadow-sm">
-                <CardContent className="pt-4 pb-4">
+                <CardContent className="py-4 flex flex-col items-center justify-center">
                   <p className="text-2xl font-extrabold text-emerald-500">
                     {Math.round(
                       riwayatData.reduce((a, b) => a + b.skor, 0) /
@@ -109,7 +109,7 @@ export default function RiwayatPage() {
                 </CardContent>
               </Card>
               <Card className="rounded-2xl shadow-sm">
-                <CardContent className="pt-4 pb-4">
+                <CardContent className="py-4 flex flex-col items-center justify-center">
                   <p className="text-2xl font-extrabold text-amber-500">
                     {riwayatData.filter((q) => q.skor === 100).length}
                   </p>
@@ -161,7 +161,7 @@ export default function RiwayatPage() {
                       </div>
 
                       {/* Skor */}
-                      <div className="flex flex-col items-end gap-1 shrink-0">
+                      <div className="flex sm:flex-row flex-col items-center gap-1 shrink-0">
                         <p
                           className={`text-lg font-extrabold ${skorColor(item.skor)}`}
                         >
